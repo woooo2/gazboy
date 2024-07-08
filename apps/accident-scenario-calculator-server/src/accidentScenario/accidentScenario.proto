@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+                 package accidentScenario;
+service AccidentScenarioService {
+ rpc createAccidentScenario (AccidentScenarioCreateInput) returns (AccidentScenario) {}
+rpc accidentScenarios (findManyParams) returns (stream AccidentScenario) {}
+rpc accidentScenario (AccidentScenarioWhereUniqueInput) returns (AccidentScenario) {}
+rpc updateAccidentScenario (AccidentScenarioUpdateInput) returns (AccidentScenario) {}
+rpc deleteAccidentScenario (AccidentScenarioWhereUniqueInput) returns (AccidentScenario) {} 
+ }
+message AccidentScenarioCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message AccidentScenario {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message AccidentScenarioWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message AccidentScenarioUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message findManyParams {
+
+};
