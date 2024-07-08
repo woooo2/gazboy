@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+                 package hazardousSubstance;
+service HazardousSubstanceService {
+ rpc createHazardousSubstance (HazardousSubstanceCreateInput) returns (HazardousSubstance) {}
+rpc hazardousSubstances (findManyParams) returns (stream HazardousSubstance) {}
+rpc hazardousSubstance (HazardousSubstanceWhereUniqueInput) returns (HazardousSubstance) {}
+rpc updateHazardousSubstance (HazardousSubstanceUpdateInput) returns (HazardousSubstance) {}
+rpc deleteHazardousSubstance (HazardousSubstanceWhereUniqueInput) returns (HazardousSubstance) {}
+rpc findManyHazardousSubstance (HazardousSubstanceWhereUniqueInput) returns (stream AccidentScenario) {}
+rpc updateHazardousSubstance (AccidentScenarioParams) returns (stream AccidentScenario) {}
+rpc connectHazardousSubstance (AccidentScenarioParams) returns (AccidentScenario) {}
+rpc disconnectHazardousSubstance (AccidentScenarioParams) returns (AccidentScenario) {} 
+ }
+message HazardousSubstanceCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+int32 boilingPoint = 5;
+int32 flammabilityLimit = 6;
+int32 mass = 7;
+string typeField = 8;
+repeated AccidentScenario accidentScenarios = 9;
+};
+message HazardousSubstance {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+int32 boilingPoint = 5;
+int32 flammabilityLimit = 6;
+int32 mass = 7;
+string typeField = 8;
+repeated AccidentScenario accidentScenarios = 9;
+};
+message HazardousSubstanceWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+int32 boilingPoint = 5;
+int32 flammabilityLimit = 6;
+int32 mass = 7;
+string typeField = 8;
+repeated AccidentScenario accidentScenarios = 9;
+};
+message HazardousSubstanceUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+string name = 4;
+int32 boilingPoint = 5;
+int32 flammabilityLimit = 6;
+int32 mass = 7;
+string typeField = 8;
+repeated AccidentScenario accidentScenarios = 9;
+};
+message findManyParams {
+
+};
+message AccidentScenario {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message AccidentScenarioWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message AccidentScenarioParams {
+HazardousSubstanceWhereUniqueInput hazardousSubstanceWhereUniqueInput = 1;
+AccidentScenarioWhereUniqueInput accidentscenarioWhereUniqueInput = 2;
+};

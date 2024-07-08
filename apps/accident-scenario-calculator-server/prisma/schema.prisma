@@ -1,0 +1,54 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model HazardousSubstance {
+  id                String             @id @default(cuid())
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  name              String?
+  boilingPoint      Float?
+  flammabilityLimit Float?
+  mass              Float?
+  typeField         String?
+  accidentScenarios AccidentScenario[]
+}
+
+model Pipeline {
+  id                String             @id @default(cuid())
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  diameter          Float?
+  length            Float?
+  material          String?
+  accidentScenarios AccidentScenario[]
+}
+
+model AccidentScenario {
+  id                        String              @id @default(cuid())
+  createdAt                 DateTime            @default(now())
+  updatedAt                 DateTime            @updatedAt
+  thermalRadiationIntensity Float?
+  probabilityDamage         Float?
+  pipeline                  Pipeline?           @relation(fields: [pipelineId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pipelineId                String?
+  hazardousSubstance        HazardousSubstance? @relation(fields: [hazardousSubstanceId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  hazardousSubstanceId      String?
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  firstName String?
+  lastName  String?
+  username  String   @unique
+  email     String?  @unique
+  password  String
+  roles     Json
+}

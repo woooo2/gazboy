@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+                 package pipeline;
+service PipelineService {
+ rpc createPipeline (PipelineCreateInput) returns (Pipeline) {}
+rpc pipelines (findManyParams) returns (stream Pipeline) {}
+rpc pipeline (PipelineWhereUniqueInput) returns (Pipeline) {}
+rpc updatePipeline (PipelineUpdateInput) returns (Pipeline) {}
+rpc deletePipeline (PipelineWhereUniqueInput) returns (Pipeline) {}
+rpc findManyPipeline (PipelineWhereUniqueInput) returns (stream AccidentScenario) {}
+rpc updatePipeline (AccidentScenarioParams) returns (stream AccidentScenario) {}
+rpc connectPipeline (AccidentScenarioParams) returns (AccidentScenario) {}
+rpc disconnectPipeline (AccidentScenarioParams) returns (AccidentScenario) {} 
+ }
+message PipelineCreateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 diameter = 4;
+int32 length = 5;
+string material = 6;
+repeated AccidentScenario accidentScenarios = 7;
+};
+message Pipeline {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 diameter = 4;
+int32 length = 5;
+string material = 6;
+repeated AccidentScenario accidentScenarios = 7;
+};
+message PipelineWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 diameter = 4;
+int32 length = 5;
+string material = 6;
+repeated AccidentScenario accidentScenarios = 7;
+};
+message PipelineUpdateInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 diameter = 4;
+int32 length = 5;
+string material = 6;
+repeated AccidentScenario accidentScenarios = 7;
+};
+message findManyParams {
+
+};
+message AccidentScenario {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message AccidentScenarioWhereUniqueInput {
+string id = 1;
+string createdAt = 2;
+string updatedAt = 3;
+int32 thermalRadiationIntensity = 4;
+int32 probabilityDamage = 5;
+};
+message AccidentScenarioParams {
+PipelineWhereUniqueInput pipelineWhereUniqueInput = 1;
+AccidentScenarioWhereUniqueInput accidentscenarioWhereUniqueInput = 2;
+};
